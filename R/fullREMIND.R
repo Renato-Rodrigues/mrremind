@@ -4,7 +4,6 @@
 #' REMIND model.
 #'
 #' @param rev data revision which should be used as input (positive numeric).
-#' @importFrom edgeTransport collectScens generateEDGEdata
 #' @importFrom madrat madratAttach
 #' @importFrom magrittr %>%
 #' @importFrom quitte cartesian madrat_mule
@@ -64,6 +63,8 @@ fullREMIND <- function(rev = 0) {
   calcOutput("DevelopmentState",                      round = 4,  file = "f_developmentState.cs3r")
   calcOutput("Population", years = rem_years_hist,    round = 8,  file = "f50_pop.cs3r", aggregate = FALSE)
   calcOutput("GDP",        years = rem_years_hist,    round = 8,  file = "f50_gdp.cs3r", aggregate = FALSE)
+  calcOutput("TCdamage", subtype = "const",           round=8, file="f50_TC_df_const.cs4r", aggregate=FALSE)
+  calcOutput("TCdamage", subtype = "tasK",            round=8, file="f50_TC_df_tasK.cs4r", aggregate=FALSE)
 
   #-------------- energy services parameter -----------------------------------------------------------
   calcOutput("FEdemand", subtype = "EsUeFe_in",       round = 8, file = "p36_serviceInputs.cs4r")

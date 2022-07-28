@@ -15,6 +15,11 @@
 
 calcEDGETrData <- function() {
 
+  if (!'edgeTransport' %in% unique(getCalculations('calc')$package)) {
+    stop(paste('calcEDGETrData() requires package edgeTransport to be loaded',
+               '(manually)'))
+  }
+
   ## monitor edgeTransport functions
   "#! @monitor edgeTransport:::compScenEDGET"
   "#! @monitor edgeTransport:::generateEDGEdata"
@@ -49,9 +54,10 @@ calcEDGETrData <- function() {
     ## SHAPE scenarios are coupled to specific technologies
     tribble(
       ~SSP_scen,   ~tech_scen,   ~smartlifestyle,
-      'SDP_EI',    'Mix4',    'FALSE',
-      'SDP_MC',    'Mix4',    'FALSE',
-      'SDP_RC',    'Mix3',    'FALSE')
+      'SDP_EI',    'Mix4',     'FALSE',
+      'SDP_MC',    'Mix4',     'FALSE',
+      'SDP_RC',    'Mix3',     'FALSE',
+      'SSP2EU',    'HydrHype4','FALSE')
   )
 
   # generate list from data frame rows
